@@ -38,14 +38,14 @@ public class GameManager : MonoBehaviour
         int low = rng.Next(2) + 1;
         int height = rng.Next(7) + low;
         bool lockedOnRoom = false;
-        int nextRoomAt = 1 + rng.Next(4);
+        int nextRoomAt = 1 + length[0] + rng.Next(4);
         for (int j = 0 + length[0]; j < length[1]; j++)
 
         {
             if (!lockedOnRoom && nextRoomAt == j)
             {
                 low = j;
-                height = rng.Next(7) + low;
+                height = rng.Next(7) + low + 3;
                 wallLeft = 1;
                 corridor = 6;
                 wallRight = 1;
