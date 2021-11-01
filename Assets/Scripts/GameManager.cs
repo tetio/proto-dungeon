@@ -11,13 +11,14 @@ public class GameManager : MonoBehaviour
 
     private int width = 8;
     private List<int> length = new List<int> { 8, 192 };
+    public List<Vector2> walls = new List<Vector2>();
 
 
 
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         System.Random rng = new System.Random();
         // float tileWidth = floorTile.GetComponents<SpriteRenderer>()[0].sprite.bounds.size.x;
@@ -61,7 +62,9 @@ public class GameManager : MonoBehaviour
             }
             for (int i = 0; i < wallLeft; i++)
             {
-                addChild(Instantiate(wallTile, new Vector2(i, j), Quaternion.identity));
+                var pos = new Vector2(i, j);
+                walls.Add(pos);
+                addChild(Instantiate(wallTile, pos, Quaternion.identity));
             }
             for (int i = wallLeft; i < wallLeft + corridor; i++)
             {
@@ -69,7 +72,9 @@ public class GameManager : MonoBehaviour
             }
             for (int i = wallLeft + corridor; i < wallLeft + corridor + wallRight; i++)
             {
-                addChild(Instantiate(wallTile, new Vector2(i, j), Quaternion.identity));
+                var pos = new Vector2(i, j);
+                walls.Add(pos);
+                addChild(Instantiate(wallTile, pos, Quaternion.identity));
             }
         }
     }

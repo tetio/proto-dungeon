@@ -1,30 +1,53 @@
 using System;
 using UnityEngine;
-
+using System.Linq;
 public class Hero : MonoBehaviour
 {
-    private float speed = 4.0f;
+    private float speed = 5f; //0.05f;
     private float blockV = 0;
     private float blockH = 0;
     private float nextValue = 0;
 
+    public GameObject _gameManager;
+    GameManager gameManager;
+
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        gameManager = _gameManager.GetComponent<GameManager>();//GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float horizontal = (blockV != 0)? 0 : Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        float vertical = (blockH != 0)? 0 : Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        float horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        float vertical = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+
+        // if (horizontal > 0) {
+        //     var pos = new Vector2(transform.position.x+1, transform.position.y);
+        //     if (gameManager.walls.Where(w => w == pos).Count() > 0)
+        //         return; 
+        // } else if (horizontal < 0) {
+        //     var pos = new Vector2(transform.position.x-1, transform.position.y);
+        //     if (gameManager.walls.Where(w => w == pos).Count() > 0)
+        //         return; 
+        // } else if (vertical > 0) {
+        //     var pos = new Vector2(transform.position.x, transform.position.y+1);
+        //     if (gameManager.walls.Where(w => w == pos).Count() > 0)
+        //         return; 
+        // } else if (vertical < 0) {
+        //     var pos = new Vector2(transform.position.x, transform.position.y-1);
+        //     if (gameManager.walls.Where(w => w == pos).Count() > 0)
+        //         return; 
+        // }   
+
+/*
         if (horizontal != 0 || blockH != 0)
-        {
+        { 
             if (blockH == 0)
             {
-                blockH = Math.Sign(horizontal) * 0.06f;
+                blockH = Math.Sign(horizontal) * speed;
                 float truncated = (float)(Math.Truncate((double)transform.position.x * 100.0) / 100.0);
                 nextValue = (horizontal > 0) ? truncated + 1 : truncated - 1;
                 transform.Translate(new Vector3(blockH, 0, 0));
@@ -37,6 +60,7 @@ public class Hero : MonoBehaviour
                     transform.position = new Vector3(nextValue, transform.position.y, 0);
                     blockH = 0;
                     nextValue = 0;
+                    Input.ResetInputAxes();
                 }
                 else
                 {
@@ -45,11 +69,11 @@ public class Hero : MonoBehaviour
             }
 
         }
-        else if (vertical != 0 || blockV != 0)
+        if (vertical != 0 || blockV != 0)
         {
             if (blockV == 0)
             {
-                blockV = Math.Sign(vertical) * 0.06f;
+                blockV = Math.Sign(vertical) * speed;
                 float truncated = (float)(Math.Truncate((double)transform.position.y * 100.0) / 100.0);
                 nextValue = (vertical > 0) ? truncated + 1 : truncated - 1;
                 transform.Translate(new Vector3(0, blockV, 0));
@@ -62,6 +86,7 @@ public class Hero : MonoBehaviour
                     transform.position = new Vector3(transform.position.x, nextValue, 0);
                     blockV = 0;
                     nextValue = 0;
+                    Input.ResetInputAxes();
                 }
                 else
                 {
@@ -69,5 +94,21 @@ public class Hero : MonoBehaviour
                 }
             }
         }
+        */
+
+        transform.Translate(horizontal, vertical, 0);
+    }
+
+
+    void OnTriggerEnter(Collider collider)
+    {
+        // foreach (ContactPoint contact in collision.contacts)
+        // {
+        //     Debug.DrawRay(contact.point, contact.normal, Color.white);
+        // }
+
+        // if (collision.relativeVelocity.magnitude > 2)
+        //     audioSource.Play();  
+        Debug.Log("HERO: poing!");
     }
 }
