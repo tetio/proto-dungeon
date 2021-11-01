@@ -252,7 +252,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 826910056}
+  m_Father: {fileID: 1136908617}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &711065088
@@ -339,28 +339,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &716509882
+--- !u!1001 &938281902
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -6461409300680890701, guid: 6d2c80f14a3a471428beb7a64cd4d2f6, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 67420201}
-    - target: {fileID: -6461409300680890701, guid: 6d2c80f14a3a471428beb7a64cd4d2f6, type: 3}
-      propertyPath: _gameManager
-      value: 
-      objectReference: {fileID: 67420199}
     - target: {fileID: 106846312350552456, guid: 6d2c80f14a3a471428beb7a64cd4d2f6, type: 3}
       propertyPath: m_Name
       value: Hero
-      objectReference: {fileID: 0}
-    - target: {fileID: 106846312350552456, guid: 6d2c80f14a3a471428beb7a64cd4d2f6, type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 106846312350552462, guid: 6d2c80f14a3a471428beb7a64cd4d2f6, type: 3}
       propertyPath: m_RootOrder
@@ -372,7 +360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 106846312350552462, guid: 6d2c80f14a3a471428beb7a64cd4d2f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 106846312350552462, guid: 6d2c80f14a3a471428beb7a64cd4d2f6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -408,8 +396,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d2c80f14a3a471428beb7a64cd4d2f6, type: 3}
---- !u!4 &826910056 stripped
+--- !u!4 &1136908617 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 106846312350552462, guid: 6d2c80f14a3a471428beb7a64cd4d2f6, type: 3}
-  m_PrefabInstance: {fileID: 716509882}
+  m_PrefabInstance: {fileID: 938281902}
   m_PrefabAsset: {fileID: 0}
