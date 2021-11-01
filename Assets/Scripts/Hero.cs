@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Linq;
 public class Hero : MonoBehaviour
 {
-    private float speed = 5f; //0.05f;
+    private float speed = 0.08f;
     private float blockV = 0;
     private float blockH = 0;
     private float nextValue = 0;
@@ -23,27 +23,27 @@ public class Hero : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         float vertical = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        string value = "NOT_WALL";
+        if (horizontal > 0 || blockH > 0) {
+            var pos = new Vector2(transform.position.x+1, transform.position.y);
+            if (gameManager.elements.TryGetValue(pos, out value) && gameManager.elements[pos] == "WALL")
+                return; 
+        } else if (horizontal < 0 || blockH < 0) {
+            var pos = new Vector2(transform.position.x-1, transform.position.y);
+            if (gameManager.elements.TryGetValue(pos, out value) && gameManager.elements[pos] == "WALL")
+                return; 
+        } else if (vertical > 0 || blockV > 0) {
+            var pos = new Vector2(transform.position.x, transform.position.y+1);
+            if (gameManager.elements.TryGetValue(pos, out value)  && gameManager.elements[pos] == "WALL")
+                return; 
+        } else if (vertical < 0 || blockV < 0) {
+            var pos = new Vector2(transform.position.x, transform.position.y-1);
+            if (gameManager.elements.TryGetValue(pos, out value) && gameManager.elements[pos] == "WALL")
+                return; 
+        }   
 
-        // if (horizontal > 0) {
-        //     var pos = new Vector2(transform.position.x+1, transform.position.y);
-        //     if (gameManager.walls.Where(w => w == pos).Count() > 0)
-        //         return; 
-        // } else if (horizontal < 0) {
-        //     var pos = new Vector2(transform.position.x-1, transform.position.y);
-        //     if (gameManager.walls.Where(w => w == pos).Count() > 0)
-        //         return; 
-        // } else if (vertical > 0) {
-        //     var pos = new Vector2(transform.position.x, transform.position.y+1);
-        //     if (gameManager.walls.Where(w => w == pos).Count() > 0)
-        //         return; 
-        // } else if (vertical < 0) {
-        //     var pos = new Vector2(transform.position.x, transform.position.y-1);
-        //     if (gameManager.walls.Where(w => w == pos).Count() > 0)
-        //         return; 
-        // }   
 
-/*
-        if (horizontal != 0 || blockH != 0)
+        if (blockV == 0 && (horizontal != 0 || blockH != 0))
         { 
             if (blockH == 0)
             {
@@ -60,7 +60,7 @@ public class Hero : MonoBehaviour
                     transform.position = new Vector3(nextValue, transform.position.y, 0);
                     blockH = 0;
                     nextValue = 0;
-                    Input.ResetInputAxes();
+                    // Input.ResetInputAxes();
                 }
                 else
                 {
@@ -68,8 +68,8 @@ public class Hero : MonoBehaviour
                 }
             }
 
-        }
-        if (vertical != 0 || blockV != 0)
+        } 
+        if (blockH == 0 && (vertical != 0 || blockV != 0))
         {
             if (blockV == 0)
             {
@@ -86,7 +86,7 @@ public class Hero : MonoBehaviour
                     transform.position = new Vector3(transform.position.x, nextValue, 0);
                     blockV = 0;
                     nextValue = 0;
-                    Input.ResetInputAxes();
+                    // Input.ResetInputAxes();
                 }
                 else
                 {
@@ -94,9 +94,6 @@ public class Hero : MonoBehaviour
                 }
             }
         }
-        */
-
-        transform.Translate(horizontal, vertical, 0);
     }
 
 

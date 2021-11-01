@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     private int width = 8;
     private List<int> length = new List<int> { 8, 192 };
-    public List<Vector2> walls = new List<Vector2>();
+    public Dictionary<Vector2, string> elements = new Dictionary<Vector2, string>();
 
 
 
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < wallLeft; i++)
             {
                 var pos = new Vector2(i, j);
-                walls.Add(pos);
+                elements.Add(pos, "WALL");
                 addChild(Instantiate(wallTile, pos, Quaternion.identity));
             }
             for (int i = wallLeft; i < wallLeft + corridor; i++)
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
             for (int i = wallLeft + corridor; i < wallLeft + corridor + wallRight; i++)
             {
                 var pos = new Vector2(i, j);
-                walls.Add(pos);
+                elements.Add(pos, "WALL");
                 addChild(Instantiate(wallTile, pos, Quaternion.identity));
             }
         }
